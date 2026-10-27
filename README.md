@@ -46,5 +46,85 @@ V. Instalar MATLAB 2026
   Requisitos
   - Licencia de MATLAB
   - 20 a 30 GB libres
-# Ejecución
+# 6. Ejecución
+a. Configuración inicial del escenario
+  Se definieron los parámetros base del escenario: 10 nodos sensores, 1 gateway, radio de 50 m, 600 s de simulación, paquetes de 32 bytes y transmisiones cada 120 s.
+b. Configuración de las ejecuciones y réplicas
+  Se realizaron 7 réplicas independientes utilizando una semilla fija (12345) y variando el parámetro run para generar diferentes distribuciones aleatorias de los nodos.
 
+c. Registro de la ejecución
+  Se registró en consola la información de cada simulación, incluyendo fecha, hora, escenario, número de ejecución y parámetros principales.
+
+d. Configuración del canal LoRa
+  Se implementó un canal LoRa utilizando el modelo LogDistancePropagationLossModel, considerando pérdidas por propagación y retardo de transmisión.
+
+e. Creación y distribución de los nodos sensores
+  Se crearon 10 sensores distribuidos aleatoriamente dentro de un área circular de 50 m de radio mediante un modelo de movilidad estático.
+
+f. Registro de las coordenadas
+  Se almacenaron las coordenadas de los nodos para verificar la topología generada en cada réplica de la simulación.
+
+g. Implementación del modelo energético
+  Se asignó una energía inicial de 10 000 J a cada sensor y se utilizó un modelo energético LoRa para calcular el consumo y la energía remanente al finalizar la simulación.
+
+h. Configuración del gateway
+  Se creó un único gateway ubicado de forma fija en las coordenadas (0, 0, 15 m) para recibir las transmisiones de los sensores.
+
+i. Configuración de los dispositivos LoRaWAN
+  Se configuraron las capas física y MAC de los dispositivos LoRaWAN y se asignaron direcciones a los nodos sensores y al gateway.
+
+j. Configuración del Spreading Factor
+  Todos los nodos se configuraron para operar con SF7 (DR5), garantizando una misma configuración de transmisión durante toda la simulación.
+
+k. Generación del tráfico
+  Cada sensor transmitió paquetes de 32 bytes cada 120 s, desde el inicio hasta el final de la simulación.
+
+l. Ejecución de la simulación
+  La simulación se ejecutó durante 600 s, recopilando la información necesaria para el análisis posterior.
+
+m. Obtención de las métricas de desempeño
+  Se contabilizaron los paquetes enviados y recibidos, calculando DER, throughput, latencia promedio y consumo energético promedio para evaluar el desempeño de la red.
+# 7. Análisis de resultados
+Los siguientes resultados son para el escenario 1 (E1), este proceso es repetitivo para todos los escenarios planteados.
+Copilot said:
+A. Resultados del escenario E1
+  Las siete ejecuciones del escenario E1 mantuvieron la misma configuración, variando únicamente la distribución aleatoria de los nodos mediante el parámetro run. En todas las réplicas se enviaron y recibieron 50 paquetes, obteniéndose un DER de 100 %, un throughput de 0.0213333 kbps y una latencia promedio de 87.2961 ms. La única métrica que presentó variación fue el consumo energético promedio, con valores entre 0.292 J y 0.424 J, debido a las diferentes ubicaciones de los nodos en cada ejecución.
+Ejecución	Consumo promedio (J)	Paq. enviados	Paq. recibidos	DER (%)	Throughput (kbps)	Latencia (ms)
+1	0.408	50	50	100	0.0213333	87.2961
+2	0.399	50	50	100	0.0213333	87.2961
+3	0.358	50	50	100	0.0213333	87.2961
+4	0.416	50	50	100	0.0213333	87.2961
+5	0.292	50	50	100	0.0213333	87.2961
+6	0.295	50	50	100	0.0213333	87.2961
+7	0.424	50	50	100	0.0213333	87.2961
+
+B. Estadísticos de E1
+  A partir de las siete réplicas se calcularon la media y la desviación estándar de cada métrica para representar el comportamiento promedio y su variabilidad. Los resultados mostraron una media de 0.314 J y una desviación estándar de 0.064 J para el consumo energético, siendo esta la única métrica con variación entre ejecuciones. En cambio, los paquetes enviados y recibidos, el DER, el throughput y la latencia permanecieron constantes, presentando una desviación estándar igual a cero. Esto indica que la variabilidad espacial afectó únicamente el consumo energético y no el desempeño de la comunicación en el escenario E1.
+  Estadísticos obtenidos del escenario 1
+Métrica	                  Media	     Desv. estándar
+Consumo promedio (J)	    0.313771	 0.064474
+Paquetes enviados    	    50.00	     0.00
+Paquetes recibidos	      50.00	     0.00
+DER (%)	                  100.00	   0.00
+Throughput (kbps)	        0.0213333	 0.000000
+Latencia promedio (ms)	  87.2961    0.000000
+
+# 8. Descripción de anexos y código fuente
+Códigos fuente de los escenarios de E1 a E6:
+- hidroponicoE1.cc
+- hidroponicoE2.cc
+- hidroponicoE3.cc
+- hidroponicoE4.cc
+- hidroponicoE5.cc
+- hidroponicoE6.cc
+Código de Matlab del E1 al E4
+- analisis_LoRaWAN.m
+Código de Matlab de ANALISIS ESTADISTICO - ESCENARIO E5 y E6
+- E5matlab.m
+- E6matlab.m
+PROCESAMIENTO DE SALIDA NS-3 - ESCENARIO E1 y E2
+- analisisE1.m
+- analisisE2.m
+Código de la simulación del monitoreo hidropónico para E1 y E2
+- pruebaE1.cc
+- pruebaE2.cc
