@@ -2,7 +2,7 @@
 # 1. Descripción del proyecto
 Este repositorio contiene el código fuente en C++ y MATLAB desarrollado para la elaboración de la tesis.
 # 2. Objetivo
-Describir el repositorio del software y su relación con los objetivos de la investigación.
+Describir el repositorio del software.
 # 3. Estructura del repositorio
 - Anexos Tesis RCruz: código fuente de la simulación en NS-3 y MATLAB.
 - README.md: estructura y las indicaciones para reproducir esta simulación en otros estudios.
@@ -89,26 +89,8 @@ Los siguientes resultados son para el escenario 1 (E1), este proceso es repetiti
 Copilot said:
 A. Resultados del escenario E1
   Las siete ejecuciones del escenario E1 mantuvieron la misma configuración, variando únicamente la distribución aleatoria de los nodos mediante el parámetro run. En todas las réplicas se enviaron y recibieron 50 paquetes, obteniéndose un DER de 100 %, un throughput de 0.0213333 kbps y una latencia promedio de 87.2961 ms. La única métrica que presentó variación fue el consumo energético promedio, con valores entre 0.292 J y 0.424 J, debido a las diferentes ubicaciones de los nodos en cada ejecución.
-Ejecución	Consumo promedio (J)	Paq. enviados	Paq. recibidos	DER (%)	Throughput (kbps)	Latencia (ms)
-1	0.408	50	50	100	0.0213333	87.2961
-2	0.399	50	50	100	0.0213333	87.2961
-3	0.358	50	50	100	0.0213333	87.2961
-4	0.416	50	50	100	0.0213333	87.2961
-5	0.292	50	50	100	0.0213333	87.2961
-6	0.295	50	50	100	0.0213333	87.2961
-7	0.424	50	50	100	0.0213333	87.2961
-
 B. Estadísticos de E1
   A partir de las siete réplicas se calcularon la media y la desviación estándar de cada métrica para representar el comportamiento promedio y su variabilidad. Los resultados mostraron una media de 0.314 J y una desviación estándar de 0.064 J para el consumo energético, siendo esta la única métrica con variación entre ejecuciones. En cambio, los paquetes enviados y recibidos, el DER, el throughput y la latencia permanecieron constantes, presentando una desviación estándar igual a cero. Esto indica que la variabilidad espacial afectó únicamente el consumo energético y no el desempeño de la comunicación en el escenario E1.
-  Estadísticos obtenidos del escenario 1
-Métrica	                  Media	     Desv. estándar
-Consumo promedio (J)	    0.313771	 0.064474
-Paquetes enviados    	    50.00	     0.00
-Paquetes recibidos	      50.00	     0.00
-DER (%)	                  100.00	   0.00
-Throughput (kbps)	        0.0213333	 0.000000
-Latencia promedio (ms)	  87.2961    0.000000
-
 # 8. Descripción de anexos y código fuente
 Códigos fuente de los escenarios de E1 a E6:
 - hidroponicoE1.cc
